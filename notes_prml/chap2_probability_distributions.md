@@ -1,5 +1,5 @@
 ## Chapter 2 Probability Distributions
----
+
 ### 2.5 Nonparametric Methods
 * Limitations of parametric model: (pp. 120) For instance, the process that generates the data is multimodal, then this aspect of the distribution can never be captured by a Gaussian, which is necessarily unimodal.
 
