@@ -1,1 +1,3 @@
-PRML reading is paused as of June 16, 2017. Will come back and read some chapters in Graphical Models, Hidden Markov Models, and Sampling Methods.
+Reading notes on Pattern Recognition and Machine Learning.
+
+8/5/2017, chapter 3.3.1 - 3.3.3
