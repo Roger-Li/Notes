@@ -5,7 +5,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="file:///C:\Users\liyz0\.atom\packages\markdown-preview-enhanced\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
+      <link rel="stylesheet" href="file:///C:\Users\Yuanzhe\.atom\packages\markdown-preview-enhanced\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
       
 
       
@@ -224,6 +224,15 @@ code.language-yaml {
 <li>Model could be selected by comparing <em>Bayes factor</em>, which is the ratio of the model evicence.</li>
 <li>(3.73) The expected Bayes factor is related to the <em>KL divergence</em></li>
 <li>&quot;In practice, it will be wise to keep aside an independent test set of data on which to evaluate the overall performance of the final system.&quot;</li>
+</ul>
+<h3 class="mume-header" id="35-the-evidence-approximation">3.5 The Evidence Approximation</h3>
+
+<h4 class="mume-header" id="351-evaluation-of-the-evidence-function">3.5.1 Evaluation of the evidence function</h4>
+
+<ul>
+<li>The evidence function <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mo>(</mo><mrow><mi mathvariant="bold">t</mi></mrow><mi mathvariant="normal">∣</mi><mi>α</mi><mo separator="true">,</mo><mi>β</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">p(\mathbf{t}|\alpha,\beta)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit">p</span><span class="mopen">(</span><span class="mord textstyle uncramped"><span class="mord mathbf">t</span></span><span class="mord mathrm">∣</span><span class="mord mathit" style="margin-right:0.0037em;">α</span><span class="mpunct">,</span><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="mclose">)</span></span></span></span> (3.7.7) is evaluated using previous derived equations on conditional Gaussian, prior/likelihood of the linear models, and finally came as (3.86) in pp.167.</li>
+<li>Note how part of the evidence function <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mrow><mi mathvariant="double-struck">E</mi><mo>(</mo><mrow><mi mathvariant="bold">m</mi></mrow></mrow><mi>N</mi></msub><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathbb{E(\mathbf{m}}_N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1.05em;vertical-align:-0.3em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord textstyle uncramped"><span class="mord mathbb">E</span><span class="mopen">(</span><span class="mord textstyle uncramped"><span class="mord mathbf">m</span></span></span><span class="msupsub"><span class="vlist"><span style="top:0.3em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord mathit mtight" style="margin-right:0.10903em;">N</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span><span class="mclose">)</span></span></span></span> (3.82) is related to the cost function of ridge regression.</li>
+<li><em>Figure</em> 3.14 shows how the model evidence versus the order <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">M</span></span></span></span> plots could indicate the best model, similar to how we use plot of training/testing error errors (<em>Figure 1.5</em>, p.8) to choose the best/simple model.</li>
 </ul>
 
     </body>
