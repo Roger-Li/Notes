@@ -44,3 +44,18 @@ $$[\hat{\mu} + z_{\alpha/2}\frac{\hat{\sigma}}{\sqrt{N}}, \hat{\mu} + z_{1-\alph
 #### Non-approxiated CI with Student's $t$-distribution
 * To find the non-approximated version, we need to use [$t$-distribution](https://en.wikipedia.org/wiki/Student%27s_t-distribution). Specifically, let $S^2=\frac{1}{N-1}\sum_{i=1}^{N}(X-\bar{X})^2$, the exact distribution of $\dfrac{\bar{X}-\mu}{S/\sqrt{N}}$ is a Student's $t$-distribution with $N-1$ degrees of freedom.
 * Note the difference between $S^2$ and $\hat{\sigma}^2$
+
+## Sec 3: Traditional A/B Testing
+### Test the Mean Difference Between Two Groups (t Procedure)
+Assuming all data are $iid$ Gaussian, we have $X_1 = \{x_1^{(1)}, ..., x_1^{(N_1)}\}, X_2 = \{x_2^{(1)}, ..., x_2^{(N_2)}\}$, and we want to test whether or not group 1 is different than group 1 on average
+* Null hypothesis $H_0: \mu_1 - \mu_2 \neq 0$
+* The test statistic $t=\dfrac{(\bar{X_1}-\bar{X_2})-(\mu_1 - \mu_2)}{\sqrt{\frac{S_1^2}{N_1}+\frac{S_2^2}{N_2}}}$
+* If the null hypothesis is true, $t\sim T_{N_1+N_2-2}$
+* The C.I. for the difference in means $\mu_1 - \mu_2$ is given by $(\bar{X_1}-\bar{X_2}) \pm t^*\sqrt{\frac{S_1^2}{N_1}+\frac{S_2^2}{N_2}}$ where $t^*$ is the $1-\alpha/2$ (e.g., $0.975$) critical value.
+
+### Pooled t Procedure
+Note that this is to assume that the two group has different variance, if we know that the two groups have the same variance (standard deviation), we use the [*pooled t procedure*](http://www.stat.yale.edu/Courses/1997-98/101/meancomp.htm) where we calculate the *pooled sample variance* $$S_p^2=\frac{(N_1-1)S_1^2+(N_2-1)S_2^2}{N_1+N_2-2}$$, and the test statistic becomes $$t=\dfrac{(\bar{X_1}-\bar{X_2})-(\mu_1 - \mu_2)}{S_p\sqrt{\frac{1}{N_1}+\frac{1}{N_2}}}$$
+
+### P-Value
+* **Definition:** The probability of obtaining a result equal to or 'more extreme' than what was actually observed, when the null hypothesis is true.
+* Since we use a significance level $\alpha$, we reject the null hypothesis if p-value $\leq \alpha$
