@@ -115,7 +115,7 @@ New drug or landing page is working well, but you cannot stop the test to launch
 
 ******
 
-## Sec 3: Bayesian A/B testing
+## Sec 4: Bayesian A/B testing
 ### Epsilon-Greedy algorithm
 * one way to solve the exploration-exploitation dilemma, also used in reinforcement learning
 * Choose a small number $\epsilon \in (0,1)$ and let it be the probability of exploration, i.e. choose at random. With probability of $1-\epsilon$ we exploit , i.e., choose the current-best arm ([multi-armed bandit](https://en.wikipedia.org/wiki/Multi-armed_bandit)).
@@ -173,7 +173,26 @@ $$E_{\mu_1,\mu_2}(L) = \frac{B(\alpha_1+1, \beta_1)}{B(\alpha_1, \beta_1)}H(\alp
 ### Confidence Interval Approximation vs. Beta Posterior for CTR Estimation
 * As shown in the [demo](https://github.com/lazyprogrammer/machine_learning_examples/blob/master/ab_testing/ci_comparison.py), the Gaussian approximated C.I. converges to the beta posterior distribution after collecting many samples, which is a demonstration of [CLT](https://en.wikipedia.org/wiki/Central_limit_theorem).
 
+******
+## Sec 5: More on Conjugate Priors
+### Role a Dice
+#### [Categorical distribution](https://en.wikipedia.org/wiki/Categorical_distribution)
+#### Likelihood
+$$p(X_1,...,X_N|\Theta)=\prod_{n=1}^N\prod_{k=1}^K\theta_k^{I(X_n=k)}$$
+#### [Dirichlet prior](https://en.wikipedia.org/wiki/Dirichlet_distribution)
+It works like a multivariate version of *Beta* distribution.
+$$Dirichlet(\vec{a})=\frac{1}{B(\vec{a})}\prod_{k=1}^K\theta_k^{\alpha_k-1}$$ $$\vec{a}=(\alpha_1,...,\alpha_K)$$ $$B(\vec{a})=\dfrac{\prod_{k=1}^K\Gamma(\alpha_k)}{\Gamma(\sum_{k=1}^K\alpha_k)}$$
+#### Posterior
+$$p(\Theta|\vec{X})\propto\prod_{k=1}^K\theta_k^{\alpha_k-1+\sum_{n=1}^NI(X_n==k)}$$ i.e.,
+$$p(\Theta|\vec{X})=Dirichlet(\vec{\alpha}_{k+1})$$ with
+$$\alpha_{k+1}=\alpha_k+\sum_{n=1}^NI(X_n==k)=\alpha_k+\text{\# times }k\text{ appeared}$$
 
+### Gaussian Likelihood with Known Variance
+#### Gaussian Prior
+With fixed variance/precision, the prior of the mean is also a Gaussian
+$$X|\mu \sim N(\mu, \tau^{-1}), \quad  \mu\sim N(m_0,\lambda_0^{-1}) $$ Note that $\tau, \lambda$ are precisions (inverse of variance) here.
+#### Posterior
+$$p(\mu|X)\propto N(m=\frac{m_0\lambda_0+\tau\sum_{n}x_n}{\lambda_0+\tau N},\lambda^{-1}=(\lambda_0+\tau N)^{-1})$$ Note that $m\sim \frac{\sum X}{N}$ when $N$ is large, which converges to the sample mean.
 
 ******
 ## Resources
@@ -184,3 +203,5 @@ $$E_{\mu_1,\mu_2}(L) = \frac{B(\alpha_1+1, \beta_1)}{B(\alpha_1, \beta_1)}H(\alp
 ### Thompson Sampling
 * [(slides) CS294 - Thompson sampling](https://www.stat.berkeley.edu/~bartlett/courses/2014fall-cs294stat260/lectures/thompson-notes.pdf) By Peter Bartlett
 * Russo et. al., [A Tutorial on Thompson Sampling](https://arxiv.org/pdf/1707.02038.pdf)
+### Conjugate Priors
+* [Table of conjugate distributions](https://en.wikipedia.org/wiki/Conjugate_prior#Table_of_conjugate_distributions)
