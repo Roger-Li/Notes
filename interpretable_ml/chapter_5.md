@@ -4,7 +4,7 @@ Section 5.1 - 5.7 and 5.9 was written in Google Docs and converted to a PDF file
 ## [5.8 Scoped Rules (Anchors)](https://christophm.github.io/interpretable-ml-book/anchors.html)
 
 - Anchors explains **individual predictions** of any black-box classification model by finding a decision rule (*IF-THEN*) that "anchors" the prediction sufficiently. A rule anchors a prediction if changes in other feature values do not affect the prediction.
-- An anchor $A$ is formally defined as follows
+- Formal definition of Anchor
 
 <p align="center"> 
 <img src="resources/images/5_8_anchor_math.jpg" alt="anchor math" width="550" height="250">
