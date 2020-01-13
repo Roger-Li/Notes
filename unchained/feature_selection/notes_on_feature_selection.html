@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Notes on feature selection</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        <link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+    </head>
+    <body>
+        <h1 id="notes-on-feature-selection">Notes on feature selection</h1>
+<p>Notes on basic feature selection methods.</p>
+<h2 id="10-from-scikit-learn-user-guide">1.0. From <code>scikit-learn</code> User Guide</h2>
+<p><code>scikit-learn</code> has a feature selection section in its user guide (<a href="https://scikit-learn.org/stable/modules/feature_selection.html">link</a>), which provides basic feature selection functionalities.</p>
+<h3 id="11-remove-low-variance-features">1.1. Remove low-variance features</h3>
+<ul>
+<li>Implemented in <a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.VarianceThreshold.html#sklearn.feature_selection.VarianceThreshold"><code>sklearn.feature_selection.VarianceThreshold</code></a>, . Notice that variance threshold is not just arbitrary and could have statistical basis.
+<ul>
+<li>For example, suppose that we have a dataset with boolean features, and we want to remove all features that are either one or zero (on or off) in more than 80% of the samples. Boolean features are <strong>Bernoulli</strong> random variables, and the variance of such variables is given by <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>Var</mtext><mo stretchy="false">[</mo><mi>X</mi><mo stretchy="false">]</mo><mo>=</mo><mi>p</mi><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>p</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\text{Var}[X]=p(1-p)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">Var</span></span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">p</span><span class="mclose">)</span></span></span></span> where <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mo>=</mo><mn>0.8</mn></mrow><annotation encoding="application/x-tex">p=0.8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">8</span></span></span></span>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="12-univariate-feature-selection">1.2. Univariate feature selection</h3>
+<p>Commonly used best univariate feature selectors include the following:</p>
+<ul>
+<li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectKBest.html#sklearn.feature_selection.SelectKBest"><code>SelectKBest(score_func=&lt;function f_classif&gt;, k=10)</code></a> removes all but the <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> highest scoring features.</li>
+<li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectPercentile.html#sklearn.feature_selection.SelectPercentile"><code>SelectPercentile(score_func=&lt;function f_classif&gt;, percentile=10</code></a> removes all but a user-specified highest scoring percentage of features.</li>
+</ul>
+<p>Common scoring functions based on univariate statistical tests are as follows:</p>
+<ul>
+<li>
+<p>For regression tasks (continuous target):</p>
+<ul>
+<li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.f_regression.html#sklearn.feature_selection.f_regression"><code>f_regression</code></a> computes the p-value and F-value of fitted univariate regression model between feature and continuous target.</li>
+<li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.mutual_info_regression.html#sklearn.feature_selection.mutual_info_regression"><code>mutual_info_regression</code></a> estimates mutual information for a continuous target variable.</li>
+</ul>
+</li>
+<li>
+<p>For classification tasks (label target):</p>
+<ul>
+<li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.chi2.html#sklearn.feature_selection.chi2"><code>chi2</code></a> computes chi-squared stats between each non-negative feature and class</li>
+<li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.f_classif.html#sklearn.feature_selection.f_classif"><code>f_classif</code></a> computes the ANOVA F-value for the provided sample.</li>
+<li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.mutual_info_classif.html#sklearn.feature_selection.mutual_info_classif"><code>mutual_info_classif</code></a> estimates mutual information for a discrete target variable.</li>
+</ul>
+</li>
+<li>
+<p>An example of the comparison between <code>f_regression</code> and <code>mutual_info_regression</code> is <a href="https://scikit-learn.org/stable/auto_examples/feature_selection/plot_f_test_vs_mi.html#sphx-glr-auto-examples-feature-selection-plot-f-test-vs-mi-py">linked here</a>, and key result is that <a href="https://en.wikipedia.org/wiki/Mutual_information">mutual information</a> works for non-linear dependencies whereas F-value or p-value only captures linear dependency.</p>
+</li>
+<li>
+<p><strong>TODO</strong>: <em>Read on and eventually write a summary/note on <a href="https://en.wikipedia.org/wiki/Mutual_information">mutual information</a>,  and <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">Kullback–Leibler divergence</a></em></p>
+</li>
+</ul>
+<h3 id="13-recursive-feature-elimination-rfe">1.3. Recursive feature elimination (RFE)</h3>
+<ul>
+<li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.RFE.html#sklearn.feature_selection.RFE"><code>sklearn.feature_selection.RFE</code></a> selects features by recursively considering smaller and smaller sets of features based on importance obtained either through a <code>coef_</code> attribute or through a <code>feature_importances_</code> attribute.</li>
+<li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.RFECV.html#sklearn.feature_selection.RFECV"><code>sklearn.feature_selection.RFECV</code></a> performs RFE in a cross-validation loop to find the optimal number of features.</li>
+</ul>
+<h3 id="14-model-based-feature-selection">1.4. Model-based feature selection</h3>
+<ul>
+<li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectFromModel.html#sklearn.feature_selection.SelectFromModel"><code>sklearn.feature_selection.SelectFromModel</code></a> is a meta-transformer that can be used along with any estimator that has a <code>coef_</code> or <code>feature_importances_</code> attribute after fitting. Features with corresponding <code>coef_</code>/<code>feature_importance_</code> values below the provided threshold are removed.</li>
+<li>Typical model-based feature selection approaches include:
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi mathvariant="normal">ℓ</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">\ell_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord">ℓ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>-based methods (e.g., LASSO, Support Vector Machine with regularization), and</li>
+<li>tree based methods that provide <code>feature_importances_</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="15-feature-selection-as-a-pipeline">1.5. Feature selection as a pipeline</h3>
+<p>Feature selection is usually used as a pre-processing step before doing the actual learning. The recommended way to do this in <code>scikit-learn</code> is to use a <a href="https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html#sklearn.pipeline.Pipeline"><code>sklearn.pipeline.Pipeline</code></a> as follows:</p>
+<pre><code class="language-Python"><div>clf = Pipeline([
+  (<span class="hljs-string">'feature_selection'</span>, SelectFromModel(LinearSVC(penalty=<span class="hljs-string">"l1"</span>))),
+  (<span class="hljs-string">'classification'</span>, RandomForestClassifier())
+])
+clf.fit(X, y)
+</div></code></pre>
+<h1 id="references">References</h1>
+<ul>
+<li><a href="https://scikit-learn.org/stable/modules/feature_selection.html">Scikit-learn User Guide 1.13. Feature selection¶</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Mutual_information">wiki - Mutual Information</a></li>
+</ul>
+
+    </body>
+    </html>
