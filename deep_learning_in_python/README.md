@@ -1,0 +1,1 @@
+Readinng notes and code examples of the book [Deep Learning in Python](https://www.manning.com/books/deep-learning-with-python) by François Chollet.
