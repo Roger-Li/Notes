@@ -20,6 +20,12 @@ Notes on the [A/B Testing (Udacity)](https://classroom.udacity.com/courses/ud257
     - [2.8 Accessing Data Sensitivity](#28-accessing-data-sensitivity)
     - [2.10 Summary of Principles](#210-summary-of-principles)
 - [Lesson 3: Choosing and Characterizing Metrics](#lesson-3-choosing-and-characterizing-metrics)
+    - [3.2 - 3.3 Metric Definition Overview](#32---33-metric-definition-overview)
+    - [3.5 Refining the Customer Funnel](#35-refining-the-customer-funnel)
+    - [3.6 - 3.7 Quizes on Choosing Metrics](#36---37-quizes-on-choosing-metrics)
+    - [3.8 Other techniques for defining metrics](#38-other-techniques-for-defining-metrics)
+    - [3.10 - 11 Techniques to Gather Additional Data and Examples](#310---11-techniques-to-gather-additional-data-and-examples)
+    - [3.13 Metric Definition: Click Through Example](#313-metric-definition-click-through-example)
 - [Lesson 4: Designing an Experiment](#lesson-4-designing-an-experiment)
 - [Lesson 5: Analyzing Results](#lesson-5-analyzing-results)
 - [Lesson 6: Final Project](#lesson-6-final-project)
@@ -124,7 +130,64 @@ An example of data sensitivity assessment is shown below
 
 
 
+
 # Lesson 3: Choosing and Characterizing Metrics
+### 3.2 - 3.3 Metric Definition Overview
+- *Invariant Checking*: metrics shouldn't change across experiment and control
+- *Evaluation*: what do we want to use the metrics for?
+  - At the evaluation stage, it's better to settle on one single objective that multiple departments within the company would most likely agree on.
+  - If mutlple metrics are available or equally important, we can create a composite metric, e.g., something called objective function or OEC (Overall Evaluation Criterion, a term created by Microsoft). 
+  - Composite metric is less preferred, as it is better to come up with a less optimal metric that works for a suite of A/B tests than to come up with a perfect metric but only for a single test.
+
+
+
+### 3.5 Refining the Customer Funnel
+An example of defining metrics for Udacity
+- Refining the customer funnel
+
+  ![Funnel Refined](images/3_5_funnel.png)
+- High-level metrics
+  
+  ![Metrics for funnels](images/3_5_funnel_2.png)
+
+### 3.6 - 3.7 Quizes on Choosing Metrics
+- How to choose metrics for different tests
+  
+  ![choosing metrics](images/3_6_choose_metric.png)
+- Difficult metrics
+  - Don't have access to data, e.g.,
+    - Amazon wants to measure average happiness of shoppers
+    - Google wants to measure probability of user finding information via search
+  - Takes too long to measure, e.g.,
+    - Udacity measures the rate of customers who completed the 1st course returning for 2nd one.
+
+### 3.8 Other techniques for defining metrics
+- External data
+- User experience research, surveys, focus groups
+- Retrospective analysis helps detect correlations for us to develop theories.
+- For details of additional techniques for defining metrics, see [`materials/define_metrics_additional_techniques.pdf`](materials/define_metrics_additional_techniques.pdf).
+
+### 3.10 - 11 Techniques to Gather Additional Data and Examples
+- Techniques for gather additional data
+
+![3.10 techniques for getting additional data](images/3_10_get_additional_data.png)
+
+- Udacity example
+
+![3.11 gather data - udacity](images/3_11_1_udacity_example.png)
+
+- Examples where data is hard to get
+
+![3.12 when there is no data](images/3_11_2_address_data_availablity.png)
+
+### 3.13 Metric Definition: Click Through Example
+
+- Metric definition
+
+![](images/3_13_ctp_example.png)
+
+![](images/3_13_ctp_impact.png)
+
 
 # Lesson 4: Designing an Experiment
 
