@@ -26,6 +26,11 @@ Notes on the [A/B Testing (Udacity)](https://classroom.udacity.com/courses/ud257
     - [3.8 Other techniques for defining metrics](#38-other-techniques-for-defining-metrics)
     - [3.10 - 11 Techniques to Gather Additional Data and Examples](#310---11-techniques-to-gather-additional-data-and-examples)
     - [3.13 Metric Definition: Click Through Example](#313-metric-definition-click-through-example)
+    - [3.16 - 3.17 Summary Metrics](#316---317-summary-metrics)
+    - [3.18 - 3.19 Sensitivity and Robustness](#318---319-sensitivity-and-robustness)
+    - [3.20 Absolute Versus Relative Differences](#320-absolute-versus-relative-differences)
+    - [3.21 - 3.22 Variability](#321---322-variability)
+    - [3.24-25 Empirical Variability](#324-25-empirical-variability)
 - [Lesson 4: Designing an Experiment](#lesson-4-designing-an-experiment)
 - [Lesson 5: Analyzing Results](#lesson-5-analyzing-results)
 - [Lesson 6: Final Project](#lesson-6-final-project)
@@ -188,6 +193,74 @@ An example of defining metrics for Udacity
 
 ![](images/3_13_ctp_impact.png)
 
+### 3.16 - 3.17 Summary Metrics
+- Categories of summary metrics
+  - Sums and counts.
+    - e.g., # users who visited page
+  - Means, medians, and percentiles
+    - e.g., mean age of users who completed a course or 
+    - median latency of page load
+  - Probabilities and rates
+    - Probability has 0 or 1 outcome in each case
+    - Rate has 0 or more
+  - Ratios
+    - e.g., $\frac{P\text{(revenue-generating click)}}{P\text{(any click)}}$
+
+### 3.18 - 3.19 Sensitivity and Robustness
+- We want summary metrics to be sensitive on things we care and robust on things we don't care.
+- Example: choose summary metric for latency of a video
+  - Use *retrospective analysis* to check robustness. For example, if we plot distribution for similar videos and find the 95th and 99th percentiles of load time has noticeable variations between videos, those two metrics may not be **robust enough**.
+  - We can also look at *experimental data*. For example, if we plot distribution of load time for videos with increasing resolution, and find that the median and 80th percentile is not affected by resolution, only the 85/90/95-th percentiles are increasing. This means that median and 80th percentile may not be sensitive enough.
+
+
+### 3.20 Absolute Versus Relative Differences
+- Usually start with absolute differences when we don't know the metric well.
+- Using relative difference means we might be able to stick with the same significance boundary and not need to worry about seasonality factors (e.g., think about CTR for shopping websites) 
+
+### 3.21 - 3.22 Variability
+- To calculate a confidence interval, we need
+  - Variance (or standard deviation)
+  - Distribution
+- For [Binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution)
+  - $SE = \sqrt{\frac{\hat{p}(1-\hat{p})}{N}}$
+  - Margin of error $m = z^*\cdot SE$, where $z$-score is derived from the standard normal distribution, as binomial approaches to normal when $N$ is large.
+- Distribution and estimated variance of some common metrics are as follows
+
+    | Type of metric                                           | distribution                                                  |       estimated variance       |
+    | :------------------------------------------------------- | :------------------------------------------------------------ | :----------------------------: |
+    | probability                                              | binomial (normal)                                             | $\frac{\hat{p}(1-\hat{p})}{N}$ |
+    | mean                                                     | normal                                                        |   $\frac{\hat{\sigma}^2}{N}$   |
+    | median/percentile                                        | depends                                                       |            depends             |
+    | count/difference                                         | normal (maybe)                                                |        Var(X) + Var(Y)         |
+    | rates                                                    | [poisson](https://en.wikipedia.org/wiki/Poisson_distribution) |           $\bar{X}$            |
+    | ratios (e.g., $\frac{\hat{p}_{exp}}{\hat{p}_{control}}$) | depends                                                       |            depends             |
+  
+- Some summary metrics may be harder to analyze. E.g., median could be non-normal if data is non-normal (e.g., latency with bimodal distribution shown below)
+
+    ![bimodal distribution of latency](images/3_22_latency_distribution.png)
+  
+- Example: calculate the 95% CI for a mean with N = [87029, 113407, 84843, 104994, 99327, 92052, 60684] 
+  - $\bar{N} = 92,052, \hat{sigma} = 17,015$
+  - $SE = \frac{\hat{\sigma}}{\sqrt{7}} = 6,430$
+  - *Margin of error* $m = z^*\cdot SE = 1.96 \cdot SE = 12,605$
+  - The CI is $79,158$ to $104,367$
+
+### 3.24-25 Empirical Variability
+- Uses of A/A tests
+  - Compare results to what you expect (sanity check)
+  - Estimate variance and calculate confidence
+  - Directly estimate confidence interval
+- A CTR example
+  - [Spreadsheet](https://docs.google.com/spreadsheets/d/17wWNY2jkDlG9BDMYQq2l-ku_8HGajXuF2Zvy__dBEL4/edit#gid=0)
+  - Estimate variance and calculate CI using pooled results
+
+  ![](images/3_26_ctr_1.png)
+
+  - Directly estimate confidence interval from empirical distribution
+
+  ![](images/3_26_ctr_2.png)
+
+- We can also use *bootstrap* to generate multiple samples/metrics to estiamte the variability.
 
 # Lesson 4: Designing an Experiment
 
