@@ -32,6 +32,9 @@ Notes on the [A/B Testing (Udacity)](https://classroom.udacity.com/courses/ud257
     - [3.21 - 3.22 Variability](#321---322-variability)
     - [3.24-25 Empirical Variability](#324-25-empirical-variability)
 - [Lesson 4: Designing an Experiment](#lesson-4-designing-an-experiment)
+    - [4.2 - 4.3 Unit of Diversion Overview](#42---43-unit-of-diversion-overview)
+    - [4.4 - 4.5 Consistency of Diversion](#44---45-consistency-of-diversion)
+    - [4.6 - 4.7 Ethical Considerations](#46---47-ethical-considerations)
 - [Lesson 5: Analyzing Results](#lesson-5-analyzing-results)
 - [Lesson 6: Final Project](#lesson-6-final-project)
 - [Reference](#reference)
@@ -263,6 +266,37 @@ An example of defining metrics for Udacity
 - We can also use *bootstrap* to generate multiple samples/metrics to estiamte the variability.
 
 # Lesson 4: Designing an Experiment
+### 4.2 - 4.3 Unit of Diversion Overview
+- *Unit of diversion* is how we define what an individual subject is in the experiment.
+- Commonly used:
+  - User id
+    - Stable, unchanging
+    - Personally identifiable
+  - Anonymous id (cookie)
+    - Changes when you switch browser or device
+    - Users can clear cookies
+  - Event
+    - No consistent experience
+    - use only for non-user-visible changes
+- Less common:
+  - Device id
+    - only available for mobile
+    - tied to specific device
+    - unchangeable by user
+  - IP address
+    - changes when location changes
+- Example
+  
+  ![Example of unit of diversion](images/4_3_unit_of_diversion_example.png)
+
+### 4.4 - 4.5 Consistency of Diversion
+- First principle of choosing unit of diversion is to make sure users have consistent experience.
+- If the customer wouldn't be likely to notice the change, we might want to start with event-based experiement. If learning effect is detected later, we can switch to a cookie-based experiment.
+- Example
+
+  ![Example of consistency needed from unit of diversion](images/4_5_consistency_of_diversion_of_unit.png)
+
+### 4.6 - 4.7 Ethical Considerations
 
 # Lesson 5: Analyzing Results
 
