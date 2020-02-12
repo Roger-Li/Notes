@@ -35,6 +35,7 @@ Notes on the [A/B Testing (Udacity)](https://classroom.udacity.com/courses/ud257
     - [4.2 - 4.3 Unit of Diversion Overview](#42---43-unit-of-diversion-overview)
     - [4.4 - 4.5 Consistency of Diversion](#44---45-consistency-of-diversion)
     - [4.6 - 4.7 Ethical Considerations](#46---47-ethical-considerations)
+    - [4.8 - 4.9 Unity of Analysis vs. Diversion](#48---49-unity-of-analysis-vs-diversion)
 - [Lesson 5: Analyzing Results](#lesson-5-analyzing-results)
 - [Lesson 6: Final Project](#lesson-6-final-project)
 - [Reference](#reference)
@@ -298,9 +299,26 @@ An example of defining metrics for Udacity
 
 ### 4.6 - 4.7 Ethical Considerations
 
+- An exmaple is as follows. 
+  - Notice that only the second case requires additional sthical review/consent from the user because it might comprimise the anonimity of cookie-based data.
+  
+  ![Example of ethical considerations](images/4_7_ethical_considerations_example.png)
+
+### 4.8 - 4.9 Unity of Analysis vs. Diversion
+- Unit of analysis is basically whatever your denominator of the analysis is.
+- When unit of analysis and unit of diversion is not the same, the empirical variability of the metric can be significantly larger than the analytical one. See [Overlapping Experiment Infrastructure:More, Better, Faster Experimentation](http://static.googleusercontent.com/media/research.google.com/en/us/pubs/archive/36500.pdf) for more details about the following example.
+
+  ![Unit of analysis versus diversion example](images/4_9_unit_of_analysis_versus_diversion.png)
+
+- The quiz example.
+  
+  ![Unit of analysis versus diversion - quiz](images/4_9_unit_of_analysis_versus_diversion_quiz.png)
+
+
 # Lesson 5: Analyzing Results
 
 # Lesson 6: Final Project
 
 # Reference
 - [Evan's Awesome A/B Tools](https://www.evanmiller.org/ab-testing/)
+- [Overlapping Experiment Infrastructure:More, Better, Faster Experimentation](http://static.googleusercontent.com/media/research.google.com/en/us/pubs/archive/36500.pdf)
