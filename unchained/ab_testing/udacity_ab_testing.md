@@ -36,6 +36,8 @@ Notes on the [A/B Testing (Udacity)](https://classroom.udacity.com/courses/ud257
     - [4.4 - 4.5 Consistency of Diversion](#44---45-consistency-of-diversion)
     - [4.6 - 4.7 Ethical Considerations](#46---47-ethical-considerations)
     - [4.8 - 4.9 Unity of Analysis vs. Diversion](#48---49-unity-of-analysis-vs-diversion)
+    - [4.10 Inter- vs. Intra-User Experiments](#410-inter--vs-intra-user-experiments)
+    - [4.11 - 4.13 Target Population, Cohort](#411---413-target-population-cohort)
 - [Lesson 5: Analyzing Results](#lesson-5-analyzing-results)
 - [Lesson 6: Final Project](#lesson-6-final-project)
 - [Reference](#reference)
@@ -314,6 +316,23 @@ An example of defining metrics for Udacity
   
   ![Unit of analysis versus diversion - quiz](images/4_9_unit_of_analysis_versus_diversion_quiz.png)
 
+### 4.10 Inter- vs. Intra-User Experiments
+- Interleaved experiments
+
+In an interleaved ranking experiment, suppose you have two ranking algorithms, $X$ and $Y$. Algorithm $X$ would show results $X_1, X_2, … X_N$ in that order, and algorithm $Y$ would show $Y_1, Y_2, … Y_N$. An interleaved experiment would show some interleaving of those results, for example, $X1, Y_1, X_2, Y_2, …$ with duplicate results removed. One way to measure this would be by comparing the click-through-rate or -probability of the results from the two algorithms. For more detail, see [Large-Scale Validation and Analysis of Interleaved Search Evaluation](http://www.cs.cornell.edu/people/tj/publications/chapelle_etal_12a.pdf).
+
+### 4.11 - 4.13 Target Population, Cohort
+- Using cohorts in experiments
+  - When to use a cohort instead of a population:
+    - Looking for learning effects
+    - Examining user retention
+    - Want to increase user activity
+    - Anything requiring user to be established
+  - Audacity example:
+
+  ![cohort - audacity example](images/4_14_cohort_example.png)
+
+
 
 # Lesson 5: Analyzing Results
 
@@ -322,3 +341,4 @@ An example of defining metrics for Udacity
 # Reference
 - [Evan's Awesome A/B Tools](https://www.evanmiller.org/ab-testing/)
 - [Overlapping Experiment Infrastructure:More, Better, Faster Experimentation](http://static.googleusercontent.com/media/research.google.com/en/us/pubs/archive/36500.pdf)
+- [Large-Scale Validation and Analysis of Interleaved Search Evaluation](http://www.cs.cornell.edu/people/tj/publications/chapelle_etal_12a.pdf)
