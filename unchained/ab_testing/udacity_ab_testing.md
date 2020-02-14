@@ -38,6 +38,7 @@ Notes on the [A/B Testing (Udacity)](https://classroom.udacity.com/courses/ud257
     - [4.8 - 4.9 Unity of Analysis vs. Diversion](#48---49-unity-of-analysis-vs-diversion)
     - [4.10 Inter- vs. Intra-User Experiments](#410-inter--vs-intra-user-experiments)
     - [4.11 - 4.13 Target Population, Cohort](#411---413-target-population-cohort)
+    - [4.16 - 4.18 Sizing Examples](#416---418-sizing-examples)
 - [Lesson 5: Analyzing Results](#lesson-5-analyzing-results)
 - [Lesson 6: Final Project](#lesson-6-final-project)
 - [Reference](#reference)
@@ -95,9 +96,16 @@ If you're going to launch the experiment for a statistically significant positiv
 - Note on power
   - Statistical textbooks often define power as the sensitivity. However, conversationally power often means the probability that your test draws the correct conclusions, which depends on both $\alpha$ and $\beta$.
 - Required sample size to achieve certain statistical power can be calculated using [online calculator](https://www.evanmiller.org/ab-testing/sample-size.html), in which you need to specify $\alpha$, $\beta$, baseline conversion rate (null), and minimum detectable effect (alternative).
+
+- Final notes on how typer I & II confidence level and detectable difference $d_min$ can determine the required sample size together is as follows
+
+  ![notes on required sample size](images/notes_on_required_sample_size.png)
+
 - Examples of factors that affect the required sample size are as follows:
 
     ![how many page views varies](images/1_24_factors_affecting_sample_size.png)
+
+
 
 ### 1.25 Pooled Example
 An pooled example is shown below, notice how the $d_{min}$ works (need the lower bond of the $1-\alpha$ level CI $> d_{min} = 0.02$)
@@ -331,6 +339,21 @@ In an interleaved ranking experiment, suppose you have two ranking algorithms, $
   - Audacity example:
 
   ![cohort - audacity example](images/4_14_cohort_example.png)
+
+### 4.16 - 4.18 Sizing Examples
+- How variability affects sizing
+  
+  ![szing example 1](images/4_17_sizing_example_1.png)
+
+  ![szing example 2](images/4_17_sizing_example_2.png)
+
+- See the [codes/empirical-sizing.r](codes/empirical-sizing.r) for code example.
+
+- Quiz
+  
+  ![sizing quiz 1](images/4_18_quiz_1.png)
+
+  ![sizing quiz 2](images/4_18_quiz_2.png)
 
 
 
