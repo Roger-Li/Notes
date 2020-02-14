@@ -39,6 +39,8 @@ Notes on the [A/B Testing (Udacity)](https://classroom.udacity.com/courses/ud257
     - [4.10 Inter- vs. Intra-User Experiments](#410-inter--vs-intra-user-experiments)
     - [4.11 - 4.13 Target Population, Cohort](#411---413-target-population-cohort)
     - [4.16 - 4.18 Sizing Examples](#416---418-sizing-examples)
+    - [4.20 - 22. Duration vs. Exposure](#420---22-duration-vs-exposure)
+    - [4.23 Learning Effects](#423-learning-effects)
 - [Lesson 5: Analyzing Results](#lesson-5-analyzing-results)
 - [Lesson 6: Final Project](#lesson-6-final-project)
 - [Reference](#reference)
@@ -277,6 +279,9 @@ An example of defining metrics for Udacity
 - We can also use *bootstrap* to generate multiple samples/metrics to estiamte the variability.
 
 # Lesson 4: Designing an Experiment
+
+![Outline of lesson 4](images/lesson4_outline.png)
+
 ### 4.2 - 4.3 Unit of Diversion Overview
 - *Unit of diversion* is how we define what an individual subject is in the experiment.
 - Commonly used:
@@ -355,6 +360,22 @@ In an interleaved ranking experiment, suppose you have two ranking algorithms, $
 
   ![sizing quiz 2](images/4_18_quiz_2.png)
 
+### 4.20 - 22. Duration vs. Exposure
+- Example
+
+  ![Duration vs exposure: example](images/4_21.png)
+
+- When to limit exposure - quiz
+  - The rule of thumb is to think about what if the worst possible impact if everything goes wrong.
+
+  ![When to limit exposure](images/4_22.png)
+
+### 4.23 Learning Effects
+- Change aversion vs. novalty effect
+- To measure learning effect, we need a stateful unit of diversion like a cookie or a user ID
+- Better use a cohort as opposed to just a population to measure the effect of dosage (e.g., how frequent a subject sees the change)
+- Risk vs. duration
+- Use A/A test is useful in both pre- and post- experiment.
 
 
 # Lesson 5: Analyzing Results
