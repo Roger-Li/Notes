@@ -42,6 +42,7 @@ Notes on the [A/B Testing (Udacity)](https://classroom.udacity.com/courses/ud257
     - [4.20 - 22. Duration vs. Exposure](#420---22-duration-vs-exposure)
     - [4.23 Learning Effects](#423-learning-effects)
 - [Lesson 5: Analyzing Results](#lesson-5-analyzing-results)
+    - [5.1 - 5.6 Sanity Checks (invariant metrics)](#51---56-sanity-checks-invariant-metrics)
 - [Lesson 6: Final Project](#lesson-6-final-project)
 - [Reference](#reference)
 
@@ -379,6 +380,23 @@ In an interleaved ranking experiment, suppose you have two ranking algorithms, $
 
 
 # Lesson 5: Analyzing Results
+
+### 5.1 - 5.6 Sanity Checks (invariant metrics)
+- Check invariant metrics
+  - Check *population sizing metrics* to make sure control and experiment groups are comparable
+  - Check actual invariant metrics
+- Quizes
+  - population sizing metrics
+
+
+  ![Quiz - 5.3 choosing population sizing metrics](images/5_3_choosing_invariants.png)
+
+  - invariant metrics
+
+  ![Quiz - 5.4 invariant metrics](images/5_4_invariant_metrics.png)
+
+
+
 
 # Lesson 6: Final Project
 
