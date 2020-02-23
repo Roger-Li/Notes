@@ -1,9 +1,19 @@
 
-# Notes on feature selection
-
 Notes on basic feature selection methods.
 
-## 1.0. From `scikit-learn` User Guide
+**Table of Content**
+- [1. From `scikit-learn` User Guide](#1-from-scikit-learn-user-guide)
+    - [1.1. Remove low-variance features](#11-remove-low-variance-features)
+    - [1.2. Univariate feature selection](#12-univariate-feature-selection)
+    - [1.3. Recursive feature elimination (RFE)](#13-recursive-feature-elimination-rfe)
+    - [1.4. Model-based feature selection](#14-model-based-feature-selection)
+    - [1.5. Feature selection as a pipeline](#15-feature-selection-as-a-pipeline)
+- [2. Filter-Based (Univariate) Feature Selection](#2-filter-based-univariate-feature-selection)
+    - [2.1. Choose statistical measures based on feature types](#21-choose-statistical-measures-based-on-feature-types)
+    - [2.2 Notes on statistical measures](#22-notes-on-statistical-measures)
+- [References](#references)
+
+# 1. From `scikit-learn` User Guide
 
 `scikit-learn` has a feature selection section in its user guide ([link](https://scikit-learn.org/stable/modules/feature_selection.html)), which provides basic feature selection functionalities.
 
@@ -52,7 +62,27 @@ clf = Pipeline([
 clf.fit(X, y)
 ```
 
+# 2. Filter-Based (Univariate) Feature Selection
+### 2.1. Choose statistical measures based on feature types
+> *Filter methods evaluate the relevance of the predictors outside of the predictive models and subsequently model only the predictors that pass some criterion.* - Page 490, [Applied Predictive Modeling, 2013](https://amzn.to/2Q1EONw).
+
+- Depending on the type of the input / output variable, statistical metrics / methods for filter-based univariate feature selection are as follows (image retrieved from [a Machine Learning Mastery article](https://machinelearningmastery.com/feature-selection-with-real-and-categorical-data/)):
+
+![stat_metric_filter](images/mlm_filter_based_selection.png)
+
+### 2.2 Notes on statistical measures
+- [Pearson's correlation coefficient](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient) measures linear dependence
+  - Formula is $\rho_{X,Y}=\frac{\mathbf{Cov}(X, Y)}{\sigma_X \sigma_Y}$, i.e., covariance divided by standard deviation.
+  - In sklearn, Pearson's can be computed using [`sklearn.feature_selection.f_regression`](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.f_regression.html)
+- [Spearman's correlation coefficient](https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient) is a nonparametric measure of rank correlation (statistical dependence between the rankings of two variables).
+  - The formula is $r_s = \rho_{\text{rg}_X, \text{rg}_Y}=\frac{\mathbf{Cov}(\text{rg}_X, \text{rg}_Y)}{\sigma_{\text{rg}_X} \sigma_{\text{rg}_Y}}$, where $\text{rg}_X$ is the rank variable of $X$.
+  - Usually used to measure the correlation between [ordinal variables](https://en.wikipedia.org/wiki/Ordinal_data).
+- [ANOVA](https://en.wikipedia.org/wiki/Analysis_of_variance) can be used to rank the univariate importance of numeric variables on categorical target using the F-value, which is computed by[`sklearn.feature_selection.f_classif`](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.f_classif.html) in sklearn.
+- 
+
+
+
 
 # References
-- [Scikit-learn User Guide 1.13. Feature selection¶](https://scikit-learn.org/stable/modules/feature_selection.html)
+- [Scikit-learn User Guide 1.13. Feature selection](https://scikit-learn.org/stable/modules/feature_selection.html)
 - [wiki - Mutual Information](https://en.wikipedia.org/wiki/Mutual_information)
