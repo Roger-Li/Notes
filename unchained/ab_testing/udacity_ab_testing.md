@@ -43,7 +43,7 @@ Notes on the [A/B Testing (Udacity)](https://classroom.udacity.com/courses/ud257
     - [4.23 Learning Effects](#423-learning-effects)
 - [Lesson 5: Analyzing Results](#lesson-5-analyzing-results)
     - [5.1 - 5.7 Sanity Checks (invariant metrics)](#51---57-sanity-checks-invariant-metrics)
-    - [5.8 Single Metric](#58-single-metric)
+    - [5.8 - 5.9 Single Metric](#58---59-single-metric)
 - [Lesson 6: Final Project](#lesson-6-final-project)
 - [Reference](#reference)
 
@@ -408,10 +408,32 @@ Outline of this section
   ![Quiz - 5.6 - Part 2-2](images/5_6_checking_invariants_part2_2.png)
   ![Quiz - 5.6 - Part 2-3](images/5_6_checking_invariants_part2_3.png)
 
-### 5.8 Single Metric
+### 5.8 - 5.9 Single Metric
 - What not to do if your results aren't significant
 
 Carrie gave some ideas of what you can do if your results aren't significant, but you were expecting they would be. One tempting idea is to run the experiment for a few more days and see if the extra data helps get you a significant result. However, this can lead to a much higher false positive rate than you expecting! See the post ([How Not To Run an A/B Test](https://www.evanmiller.org/how-not-to-run-an-ab-test.html)) for more details. Instead of running for longer when you don't like the results, you should be sizing your experiment in advance to ensure that you will have enough power the first time you look at your results.
+
+- Example
+
+  ![Quiz 5.9](images/5_9_single_metric_example_1.png)
+
+  ![Quiz 5.9 - 2](images/5_9_single_metric_example_2.png)
+
+  Notice that the confidence interval does not include the detectable difference $d_{min}$.
+
+  ![Quiz 5.9 - 3](images/5_9_single_metric_example_3.png)
+
+  - Test the probability of observaing 7 successes out of 7 experiments with success rate of 0.5. The two-tail P-value is $0.0156 (< \alpha = 0.05)$ , which is the probability of observing < 0 or > 7 successes in 7 experiments. Based on this, it's highly unlikely that the positive changes of CTR in the experiment group is due to chance, so we recommend launch.
+- Another example
+  
+  ![Quiz 5.9 - 4](images/5_9_single_metric_example_4.png)
+  - Notice that the CI includes $d_{min}$ so we cannot recommend to launch
+  
+  ![Quiz 5.9 - 5](images/5_9_single_metric_example_5.png)
+  - 9 successes out of 14 days, with a two-tail P value of 0.4240 we cannot reject the null that this is due to pure chance
+
+  ![Quiz 5.9 - 6](images/5_9_single_metric_example_6.png)
+  - Overall the effect size (in lifting CTR) shows significant result, but the sign test failed. Digging deeper into the day-by-day data we further observed that the effect is more significant for weekends and not significant for weekdays.
 
 
 # Lesson 6: Final Project
