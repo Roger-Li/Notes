@@ -42,7 +42,8 @@ Notes on the [A/B Testing (Udacity)](https://classroom.udacity.com/courses/ud257
     - [4.20 - 22. Duration vs. Exposure](#420---22-duration-vs-exposure)
     - [4.23 Learning Effects](#423-learning-effects)
 - [Lesson 5: Analyzing Results](#lesson-5-analyzing-results)
-    - [5.1 - 5.6 Sanity Checks (invariant metrics)](#51---56-sanity-checks-invariant-metrics)
+    - [5.1 - 5.7 Sanity Checks (invariant metrics)](#51---57-sanity-checks-invariant-metrics)
+    - [5.8 Single Metric](#58-single-metric)
 - [Lesson 6: Final Project](#lesson-6-final-project)
 - [Reference](#reference)
 
@@ -380,8 +381,13 @@ In an interleaved ranking experiment, suppose you have two ranking algorithms, $
 
 
 # Lesson 5: Analyzing Results
+Outline of this section
+- Sanity Checks
+- Single Metric
+- Multiple Metrics
+- Gotchas
 
-### 5.1 - 5.6 Sanity Checks (invariant metrics)
+### 5.1 - 5.7 Sanity Checks (invariant metrics)
 - Check invariant metrics
   - Check *population sizing metrics* to make sure control and experiment groups are comparable
   - Check actual invariant metrics
@@ -395,7 +401,17 @@ In an interleaved ranking experiment, suppose you have two ranking algorithms, $
 
   ![Quiz - 5.4 invariant metrics](images/5_4_invariant_metrics.png)
 
+  - Checking invariants
 
+  ![Quiz - 5.5 checking invariants](images/5_5_checking_invariants.png)
+  ![Quiz - 5.6 Part 2](images/5_6_checking_invariants_part2.png)
+  ![Quiz - 5.6 - Part 2-2](images/5_6_checking_invariants_part2_2.png)
+  ![Quiz - 5.6 - Part 2-3](images/5_6_checking_invariants_part2_3.png)
+
+### 5.8 Single Metric
+- What not to do if your results aren't significant
+
+Carrie gave some ideas of what you can do if your results aren't significant, but you were expecting they would be. One tempting idea is to run the experiment for a few more days and see if the extra data helps get you a significant result. However, this can lead to a much higher false positive rate than you expecting! See the post ([How Not To Run an A/B Test](https://www.evanmiller.org/how-not-to-run-an-ab-test.html)) for more details. Instead of running for longer when you don't like the results, you should be sizing your experiment in advance to ensure that you will have enough power the first time you look at your results.
 
 
 # Lesson 6: Final Project
