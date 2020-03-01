@@ -45,6 +45,7 @@ Notes on the [A/B Testing (Udacity)](https://classroom.udacity.com/courses/ud257
     - [5.1 - 5.7 Sanity Checks (invariant metrics)](#51---57-sanity-checks-invariant-metrics)
     - [5.8 - 5.9 Single Metric](#58---59-single-metric)
     - [5.10 - 11. Simpson's Paradox](#510---11-simpsons-paradox)
+    - [5.12 - 5.15. Multiple Metrics](#512---515-multiple-metrics)
 - [Lesson 6: Final Project](#lesson-6-final-project)
 - [Reference](#reference)
 
@@ -441,6 +442,26 @@ Carrie gave some ideas of what you can do if your results aren't significant, bu
 - An example of [Simpson's paradox](https://en.wikipedia.org/wiki/Simpson%27s_paradox) in A/B test is when your results within new/experienced user groups are consistent, but the aggregated result in the total population shows the reverse.
 
   ![5-11: simpson's paradox](images/5_11_simpsons_paradox.png)
+
+
+### 5.12 - 5.15. Multiple Metrics
+- [Bonferroni correction](https://en.wikipedia.org/wiki/Bonferroni_correction) can guarantee the overall FP rate $\alpha_{overall}$ by controlling individual FP rate $\alpha_{individual} = \alpha_{overall}/m$. However, it is too conservative.
+
+  ![Tracking multiple metrics - Bonferroni](images/5_14_multiple_metrics.png)
+
+- A audacity example where Bonferroni is too conservative. In the example below ($Z^*$ is the critical value corresponding to the confidence level, and $m$ is the margin of error), three metrics that showed significant difference individually would be rejected if we use Bonferroni to keep $\alpha_{overall}$ at the same level (i.e., 0.05), which is probably too conservative.
+  
+  ![Tracking multiple metrics - Audacity](images/5_14_multiple_metrics_audacity.png)
+
+- Practical recommendations to counter the conservatism of Bonferroni correction includes:
+  - Rigorous answer: Use a more sophisticated method (see next)
+  - In practice: Judgement call, possibly based on business strategy
+
+- The [Bonferroni correction](https://en.wikipedia.org/wiki/Bonferroni_correction) is a very simple method, but there are many other (**less conservative**) methods, including the [closed testing procedure](https://en.wikipedia.org/wiki/Closed_testing_procedure), the [Boole-Bonferroni bound](https://en.wikipedia.org/wiki/Boole%27s_inequality), and the [Holm-Bonferroni method](https://en.wikipedia.org/wiki/Holm%E2%80%93Bonferroni_method). This [article on multiple comparisons](https://en.wikipedia.org/wiki/Multiple_comparisons_problem) contains more information, and this [article](https://en.wikipedia.org/wiki/False_discovery_rate) contains more information about the false discovery rate (FDR), and methods for controlling that instead of the familywise error rate (FWER).
+  
+  ![Tracking multiple metrics - FDR](images/5_15_multiple_metrics_FDR.png)
+
+
 
 
 # Lesson 6: Final Project
