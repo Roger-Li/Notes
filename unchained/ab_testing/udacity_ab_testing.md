@@ -46,6 +46,9 @@ Notes on the [A/B Testing (Udacity)](https://classroom.udacity.com/courses/ud257
     - [5.8 - 5.9 Single Metric](#58---59-single-metric)
     - [5.10 - 11. Simpson's Paradox](#510---11-simpsons-paradox)
     - [5.12 - 5.15. Multiple Metrics](#512---515-multiple-metrics)
+    - [5.16. Analyzign Multiple Metrics](#516-analyzign-multiple-metrics)
+    - [5.17. Draw Conclusions](#517-draw-conclusions)
+    - [5.18. Changes Over Time](#518-changes-over-time)
 - [Lesson 6: Final Project](#lesson-6-final-project)
 - [Reference](#reference)
 
@@ -461,10 +464,25 @@ Carrie gave some ideas of what you can do if your results aren't significant, bu
   
   ![Tracking multiple metrics - FDR](images/5_15_multiple_metrics_FDR.png)
 
+### 5.16. Analyzign Multiple Metrics
+- Make sure/hope that multple metrics are moving towards the same direction (e.g., clicks versus stay time)
+- Better to come up with an OEC (Overall Evaluation Criterion) based on the business target of the company.
 
+### 5.17. Draw Conclusions
+- Examples of making recommendations can be found in Section [5.8 - 5.9 Single Metric](#58---59-single-metric) and [5.12 - 5.15. Multiple Metrics](#512---515-multiple-metrics)
+- Often need to go deeper to understand the user to find reasons for conflicting metrics or outcomes among cohorts.
 
+### 5.18. Changes Over Time
+- Ramp up the (sample size, user groups) of experiments. However, results may not be repeatable due to changes over time (i.e., due to seasonal-driven impact)
+- We can keep a holdout/holdback group that don't get any chagnes to track seasonality effect.
 
 # Lesson 6: Final Project
+
+As of March 1st, 2020, I have gone through the first five (video) lessons of the course, and will take an indefinite leave of absense from finishing the final project lesson. Some resources are listed as below.
+
+- [Project Instructions](https://classroom.udacity.com/courses/ud257/lessons/4126079196/concepts/42072285530923)
+- [Final Project Template](https://docs.google.com/document/d/16OX2KDSHI9mSCriyGIATpRGscIW2JmByMd0ITqKYvNg/edit)
+- [Project rubric](https://docs.google.com/document/u/1/d/1Hga00A4258wSJ9dir0Td_ZPLeAtJ079UGbM3C0ykUtE/pub?embedded=true)
 
 # Reference
 - [Evan's Awesome A/B Tools](https://www.evanmiller.org/ab-testing/)
