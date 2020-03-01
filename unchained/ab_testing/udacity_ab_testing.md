@@ -44,7 +44,7 @@ Notes on the [A/B Testing (Udacity)](https://classroom.udacity.com/courses/ud257
 - [Lesson 5: Analyzing Results](#lesson-5-analyzing-results)
     - [5.1 - 5.7 Sanity Checks (invariant metrics)](#51---57-sanity-checks-invariant-metrics)
     - [5.8 - 5.9 Single Metric](#58---59-single-metric)
-    - [5.10 Simpson's Paradox](#510-simpsons-paradox)
+    - [5.10 - 11. Simpson's Paradox](#510---11-simpsons-paradox)
 - [Lesson 6: Final Project](#lesson-6-final-project)
 - [Reference](#reference)
 
@@ -437,7 +437,7 @@ Carrie gave some ideas of what you can do if your results aren't significant, bu
   - Overall the effect size (in lifting CTR) shows significant result, but the sign test failed. Digging deeper into the day-by-day data we further observed that the effect is more significant for weekends and not significant for weekdays.
 
 
-### 5.10 Simpson's Paradox
+### 5.10 - 11. Simpson's Paradox
 - An example of [Simpson's paradox](https://en.wikipedia.org/wiki/Simpson%27s_paradox) in A/B test is when your results within new/experienced user groups are consistent, but the aggregated result in the total population shows the reverse.
 
   ![5-11: simpson's paradox](images/5_11_simpsons_paradox.png)
