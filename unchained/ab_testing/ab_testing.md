@@ -46,11 +46,10 @@ Table of Contents
 
 ******
 # 1. Introduction
-Notes on A/B testing, mainly from the the following two courses: 
-- Udemy class "Bayesian Machine Learning with Python: A/B Testing" by Lazy Programmer Inc. A somewhat useful refreshment on basic probability, hypothesis testing, and Bayes.
+Notes on A/B testing, mainly from the the Udemy course "Bayesian Machine Learning with Python: A/B Testing" by Lazy Programmer Inc. A somewhat useful refreshment on basic probability, hypothesis testing, and Bayes.
 
 
-The order of the notes are structured based on course 1, with statistical content from course 2 added in, and domain-knowledge from course 2 appended as a separate section.
+
 
 
 ******
@@ -69,13 +68,14 @@ as $Z$ is independent of $A$. This could be useful if we want to optimize over $
 $$\text{argmax}_A P(A|B) = \text{argmax}_A P(B|A) P(A)$$
 
 ### 2.2. CTR and Bernoulli distribution
-Think of click through rate (CTR) as coin tosses, which has a [Bernoulli distribution](https://en.wikipedia.org/wiki/Bernoulli_distribution) for each click/don't click choice $Bern(p)$. Let $H= $click, $T=$ No click, their corresponding # be $N_H$ and $N_T$. The likelihood is
+Think of click through rate (CTR) as coin tosses, which has a [Bernoulli distribution](https://en.wikipedia.org/wiki/Bernoulli_distribution) for each click/don't click choice $Bern(p)$. Let $H=$ click, $T=$ No click, their corresponding # be $N_H$ and $N_T$. The likelihood is
 $$L(N_H, N_T) = p^{N_H}(1-p)^{N_T}$$
 To estimate $p$, we maximize the log likelihod
 $$
 L = \log[L(N_H, N_T)]=N_H\log p + N_T\log(1-p)
 $$
-so $$\dfrac{\partial L}{\partial p} = \dfrac{N_H}{p} -\dfrac{N_T}{1-p} =0 \Longleftrightarrow p = \dfrac{N_H}{N_H+N_T}$$
+so 
+$$\dfrac{\partial L}{\partial p} = \dfrac{N_H}{p} -\dfrac{N_T}{1-p} =0 \Longleftrightarrow p = \dfrac{N_H}{N_H+N_T}$$
 
 ### 2.3. Central Limit Theorem
 * If $X_i$'s are $iid$ random variables with $E[X_i] = \mu, Var[X_i]=\sigma^2<\infty$. Let $\bar{X} = \frac{1}{N}\sum_{i=1}^{N}X_i$, CLT states that 
@@ -91,9 +91,9 @@ $$\hat{\sigma}=\sqrt{\frac{1}{N}\sum_{i=1}^{N}(X_i-\bar{X})^2}$$
 
 - Let $\hat{\mu} = \bar{X}, \hat{\sigma}=\sqrt{\frac{1}{N}\sum_{i=1}^{N}(X_i-\bar{X})^2}$. Given $X_1, ..., X_N$, we calculate the level -$\alpha$ (e.g., $.05$) C.I. of $\mu$ as
   
-$$[\hat{\mu} + z_{\alpha/2}\frac{\hat{\sigma}}{\sqrt{N}}, \hat{\mu} + z_{1-\alpha/2}\frac{\hat{\sigma}}{\sqrt{N}}$$
+$$[\hat{\mu} - z_{\alpha/2}\frac{\hat{\sigma}}{\sqrt{N}}, \hat{\mu} + z_{1-\alpha/2}\frac{\hat{\sigma}}{\sqrt{N}}$$
 
-Where $z_{\alpha/2} = \Phi^{-1}(\alpha/2)$ and $z_{1-\alpha/2}= \Phi^{-1}(1-\alpha/2)=-z_{\alpha/2}$ can be found using the [z-score table](https://www.math.upenn.edu/~chhays/zscoretable.pdf).
+Where critical values $z_{\alpha/2} = \Phi^{-1}(\alpha/2)$ and $z_{1-\alpha/2}= \Phi^{-1}(1-\alpha/2)=- z_{\alpha/2}$ can be found using the [z-score table](https://www.math.upenn.edu/~chhays/zscoretable.pdf).
 
 
 #### 2.4.2. Non-approxiated CI with Student's $t$-distribution
@@ -111,7 +111,10 @@ Assuming all data are $iid$ Gaussian, we have $X_1 = \{x_1^{(1)}, ..., x_1^{(N_1
 * The C.I. for the difference in means $\mu_1 - \mu_2$ is given by $(\bar{X_1}-\bar{X_2}) \pm t^*\sqrt{\frac{S_1^2}{N_1}+\frac{S_2^2}{N_2}}$ where $t^*$ is the $1-\alpha/2$ (e.g., $0.975$) critical value.
 
 #### 3.1.2. Pooled $t$ Procedure
-Note that this is to assume that the two group has different variance, if we know that the two groups have the same variance (standard deviation), we use the [*pooled t procedure*](http://www.stat.yale.edu/Courses/1997-98/101/meancomp.htm) where we calculate the *pooled sample variance* 
+- Note that this is to assume that the two group has different variance
+- We can use [*F-test*](https://www.itl.nist.gov/div898/handbook/eda/section3/eda359.htm) to check the equality of the variances. 
+- If we know that the two groups have the same variance (standard deviation), we use the [*pooled t procedure*](http://www.stat.yale.edu/Courses/1997-98/101/meancomp.htm) where we calculate the *pooled sample variance* 
+
 $$S_p^2=\frac{(N_1-1)S_1^2+(N_2-1)S_2^2}{N_1+N_2-2}$$
 
 and the test statistic becomes 
@@ -155,7 +158,7 @@ $$t=\dfrac{(\bar{X_1}-\bar{X_2})-(\mu_1 - \mu_2)}{S_p\sqrt{\frac{1}{N_1}+\frac{1
     *  One-vs-the-rest testing: $1-\alpha \rightarrow 1-\alpha/N$
 
 ### 3.4. Statistical Power
-* Power = sensitivity = $P$(reject $H_0|H_1$ is true)
+* Power = sensitivity = $P$(reject $H_0|H_1$ is true), i.e., true positive (TP) rate.
 * Some definitions and properties
     * Higher power decreases chances of FN ($=$ type 2 error)
     * $P$(FN) $=$ FN rate $=\beta$
@@ -164,12 +167,12 @@ $$t=\dfrac{(\bar{X_1}-\bar{X_2})-(\mu_1 - \mu_2)}{S_p\sqrt{\frac{1}{N_1}+\frac{1
 
 
 ### 3.5. A/B Testing Pitfalls
-* Should not stop experiment early when it reaches significance
-* Choosing Sample Size: general rule of thumb
+- Should not stop experiment early when it reaches significance
+- Choosing Sample Size: general rule of thumb
 $$N=16\frac{\sigma^2}{\delta^2}$$ 
 where $\sigma^2$ is the variance of data, $\delta$ is the minimum difference you want to detect
-* An example why A/B testing in Frequentist setting could be undesirable
-New drug or landing page is working well, but you cannot stop the test to launch it early because it increases the chance of FPs. Remember, p-value is the probability that observations show difference even if they are actually the same (i.e. null hypothesis is true), and it can also pass below the threshold and go back up over time.
+- An example why A/B testing in *frequentist* setting could be undesirable.
+    - New drug or landing page is working well, but you cannot stop the test to launch it early because it increases the chance of FPs. Remember, *p*-value is the probability that observations show difference even if they are actually the same (i.e. null hypothesis is true), and it can also pass below the threshold and go back up over time.
 
 ******
 
@@ -177,11 +180,11 @@ New drug or landing page is working well, but you cannot stop the test to launch
 ### 4.1 Epsilon-Greedy algorithm
 * one way to solve the exploration-exploitation dilemma, also used in reinforcement learning
 * Choose a small number $\epsilon \in (0,1)$ and let it be the probability of exploration, i.e. choose at random. With probability of $1-\epsilon$ we exploit , i.e., choose the current-best arm ([multi-armed bandit](https://en.wikipedia.org/wiki/Multi-armed_bandit)).
-* Note that the rate of exploration and exploitation are fixed. In the long run, the probability of choosing the best arm is $1-\epsilon/2$. In the case of CTR, if reward is $1$ for click and $0$ for no click, the loss is $\epsilon N/2$, which is $O(N)$.
+* Note that the rate of exploration and exploitation are fixed. In the long run, the probability of choosing the best arm is $1-\epsilon/2$. In the case of CTR, if reward is $1$ for click and $0$ for no click, the loss is $\epsilon \cdot N/2$, which is $O(N)$.
 
 ### 4.2. Upper Confidence Bound (UCB1) Algorithm
 #### 4.2.1. [Chernoff-Hoeffding's inequality](https://en.wikipedia.org/wiki/Hoeffding%27s_inequality)
-Let $X_1,...,X_N$ be independent r.v.s in the range $[0,1]$ with $E[X_i]=\mu$, then for $\epsilon >0$, we have $$p(\hat{\mu }\geq \mu + \epsilon)\leq \exp(-2\epsilon^2N)$$ The opposite is also true, so
+Let $X_1,...,X_N$ be independent r.v.s in the range $[0,1]$ with $E[X_i]=\mu$, then for $\epsilon >0$, we have $p(\hat{\mu }\geq \mu + \epsilon)\leq \exp(-2\epsilon^2N)$. The opposite is also true, so
 $$p(|\hat{\mu}-\mu|\leq \epsilon)>1-2\exp(-2\epsilon^2N)$$
 #### 4.2.2. UCB1 algorithm and properties
 * For each arm $j$, choose with probability $\epsilon_j=\sqrt{\frac{2\ln N}{N_j}}$ Where $N=$ # of total games played so far, $N_j=$ total # times arm $j$ is played.
@@ -191,7 +194,11 @@ $$p(|\hat{\mu}-\mu|\leq \epsilon)>1-2\exp(-2\epsilon^2N)$$
 * In the long run, the loss of UCB1 is $O(\ln N)$, which is much less than the Epsilon-Greedy algorithm.
 
 #### 4.2.3. Regret (expected loss)
-The regret of a policy is defined as $$\mu^*N-\sum_{j=1}^{K}\mu_j\cdot E[T_j(N)]$$ where $\mu_j$ is the expected reward of arm $j$, $\mu^*$ is the expected reward of the optimal arm, $T_j$ is the # of times arm $j$ was played.
+The regret of a policy is defined as 
+
+$$\mu^*\cdot N-\sum_{j=1}^{K}\mu_j\cdot E[T_j(N)]$$ 
+
+where $\mu_j$ is the expected reward of arm $j$, $\mu^*$ is the expected reward of the optimal arm, $T_j$ is the # of times arm $j$ was played.
 
 It represented the *expected loss* after $N$ plays due to the fact that the policy does not always play the optimal arm.
 
@@ -225,8 +232,7 @@ while True:
 * For two independent *Beta* distribution, $p(\mu_1,\mu_2) = p(\mu_1)p(\mu_2)$, thus $p(\mu_1>\mu_2)$ can be calculated as the area under $p(\mu_1,\mu_2)$ where $\mu_1>\mu_2)$, i.e.
 $$p(\mu_1>\mu_2)=\sum_{i=0}^{\alpha_2-1}\dfrac{B(\alpha_1+i, \beta_1+\beta_2)}{(\beta_2+i)B(1+i, \beta_2)B(\alpha_1, \beta_1)}$$ 
 where $B(\alpha, \beta)=\frac{\Gamma(\alpha)\Gamma(\beta)}{\Gamma(\alpha+\beta)}$. Note that the computation is $O(\alpha_2)$, not necessarily cheap.
-* Another option is to define a loss function $$L=\max(\mu_2 - \mu_1,0)$$ and stop when $$E_{\mu_1,\mu_2}(L) < \text{threshold}$$
-Use the previously computed $p(\mu_1>\mu_2)\equiv H(\alpha_1, \beta_1, \alpha_2, \beta_2)$, we have
+* Another option is to define a loss function $L=\max(\mu_2 - \mu_1,0)$ and stop when $E_{\mu_1,\mu_2}(L) < \text{threshold}$. Use the previously computed $p(\mu_1>\mu_2):= H(\alpha_1, \beta_1, \alpha_2, \beta_2)$, we have
 $$E_{\mu_1,\mu_2}(L) = \frac{B(\alpha_1+1, \beta_1)}{B(\alpha_1, \beta_1)}H(\alpha_1+1, \beta_1, \alpha_2, \beta_2)-\frac{B(\alpha_2+1, \beta_2)}{B(\alpha_2, \beta_2)}H(\alpha_1, \beta_1, \alpha_2+1, \beta_2)$$
 
 ### 4.6. Confidence Interval Approximation vs. Beta Posterior for CTR Estimation
@@ -263,6 +269,8 @@ Note that $m\sim \frac{\sum X}{N}$ when $N$ is large, which converges to the sam
 ******
 
 # Resources
+- Multi-Armed Bandit
+  - [Lil'Log - The Multi-Armed Bandit Problem and Its Solutions](https://lilianweng.github.io/lil-log/2018/01/23/the-multi-armed-bandit-problem-and-its-solutions.html) includes exploration Vs exploitation, $\epsilon-$greedy, UCB, and Thompson sampling. The author also has a [repo](https://github.com/lilianweng/multi-armed-bandit) that implements these algorithms with toy examples.
 - UCB1 Algorithm
     - [The Upper Confidence Bound Algorithm](http://banditalgs.com/2016/09/18/the-upper-confidence-bound-algorithm/) By [Tor Lattimore](http://banditalgs.com/author/tor/)
     - [(Slides) The UCB Algorithm](https://webdocs.cs.ualberta.ca/~games/go/seminar/notes/2007/slides_ucb.pdf) By  Markus Enzenberger, on UCB1, UCB2, $\epsilon-$Greedy, UCB1-NORMAL, etc.
