@@ -77,12 +77,13 @@ clf.fit(X, y)
 - [Spearman's correlation coefficient](https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient) is a nonparametric measure of rank correlation (statistical dependence between the rankings of two variables).
   - The formula is $r_s = \rho_{\text{rg}_X, \text{rg}_Y}=\frac{\mathbf{Cov}(\text{rg}_X, \text{rg}_Y)}{\sigma_{\text{rg}_X} \sigma_{\text{rg}_Y}}$, where $\text{rg}_X$ is the rank variable of $X$.
   - Usually used to measure the correlation between [ordinal variables](https://en.wikipedia.org/wiki/Ordinal_data).
-- [ANOVA](https://en.wikipedia.org/wiki/Analysis_of_variance) can be used to rank the univariate importance of numeric variables on categorical target using the F-value, which is computed by[`sklearn.feature_selection.f_classif`](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.f_classif.html) in sklearn.
+- [ANOVA](https://en.wikipedia.org/wiki/Analysis_of_variance) can be used to rank the univariate importance of numeric variables on categorical target using the F-value, which is computed by [`sklearn.feature_selection.f_classif`](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.f_classif.html) in sklearn.
 - 
 
-
+TODO: finish the notes based on the article [How to Choose a Feature Selection Method For Machine Learning](https://machinelearningmastery.com/feature-selection-with-real-and-categorical-data/)
 
 
 # References
 - [Scikit-learn User Guide 1.13. Feature selection](https://scikit-learn.org/stable/modules/feature_selection.html)
 - [wiki - Mutual Information](https://en.wikipedia.org/wiki/Mutual_information)
+- [Jason Brownlee - How to Choose a Feature Selection Method For Machine Learning](https://machinelearningmastery.com/feature-selection-with-real-and-categorical-data/)
