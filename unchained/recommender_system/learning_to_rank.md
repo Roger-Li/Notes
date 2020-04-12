@@ -2,6 +2,8 @@ Resources on Learning-to-rank models
 
 - Tutorials, articles
   - [wiki: Learning to rank](https://en.wikipedia.org/wiki/Learning_to_rank)
+  - [Hang Li: Learning to Rank](https://www.hangli-hl.com/uploads/3/4/4/6/34465961/learning_to_rank.pdf), tutorial paper written in 2011(?)
+  - [Ambuj Tewari: Tutorial on Learning to Rank](http://www.cs.utexas.edu/sites/default/files/legacy_files/research/documents/ranking_tutorial.pdf), sldies put together in 2015.
 - Metrics
   - [Mean reciprocal rank](https://en.wikipedia.org/wiki/Mean_reciprocal_rank)
   - [Discounted Cumulative Gain (DCG)](https://en.wikipedia.org/wiki/Discounted_cumulative_gain)
